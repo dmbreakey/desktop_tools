@@ -1,0 +1,12 @@
+# https://unix.stackexchange.com/questions/152039/how-to-run-a-user-script-after-systemd-wakeup
+[Unit]
+Description=Manage system sleep settings based on time of day
+After=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
+
+[Service]
+ExecStart=/home/david/bin/sleepifinactive.py
+User=david
+Environment=DISPLAY=:0
+
+[Install]
+WantedBy=suspend.target hibernate.target hybrid-sleep.target suspend-then-hibernate.target
